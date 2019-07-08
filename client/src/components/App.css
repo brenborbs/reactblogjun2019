@@ -1,0 +1,11 @@
+.signin_wrapper {
+  margin: 0 auto;
+  width: 50%;
+}
+label {
+  margin-top: 0.5rem;
+}
+
+.error_wrapper {
+  margin-top: 1rem;
+}

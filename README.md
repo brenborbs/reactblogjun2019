@@ -1,11 +1,12 @@
 ## React Blog June 2019 with Graphql and MongoDB
 
+This is a fullstack Recipe App using React, NodeJS, ExpressJS, Apollo and Graphql
+Back-end started!
+
 To run the app:
 
 - npm run server , to run node.js backend
-
-This is a fullstack Recipe App using React, NodeJS, ExpressJS, Apollo and Graphql
-Back-end started!
+- npm run dev, to run both server and client
 
 1st commit: Project Set-up
 
@@ -16,3 +17,9 @@ Back-end started!
 - Created Graphql Schemas, bodyparser and Rootquery type
 - Made 1st mutation (create Recipe)
 - Made 1st query (getRecipe)
+
+2nd commit:
+
+- Create react app client
+- Signin and Signout functionalities
+- Added token localstorage for signin/get currentuser

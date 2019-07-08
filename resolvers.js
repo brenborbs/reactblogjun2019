@@ -1,3 +1,16 @@
+const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+
+const createToken = (user, secret, expiresIn) => {
+  const { username, email } = user;
+  return jwt.sign({ username, email }, secret, { expiresIn })
+}
+
+const createToken = (user, secret, expiresIn) => {
+  const { username, email } = user;
+  return jwt.sign({ username, email }, secret, { expiresIn })
+}
+
 exports.resolvers = {
   Query: {
     getAllBlogs: async (root, args, { Blog }) => {
@@ -20,6 +33,32 @@ exports.resolvers = {
         username
       }).save();
       return newBlog;
+    },
+
+    signinUser: async (root, { username, password }, { User }) => {
+      const user = await User.findOne({ username });
+      if (!user) {
+        throw new Error("User not found");
+      }
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      if (!isValidPassword) {
+        throw new Error("Invalid password");
+      }
+      return { token: createToken(user, process.env.SECRET, "1hr") };
+    },
+
+    signupUser : async (root, { username, email, password }, { User }) => {
+      const user = await User.findOne({ username });
+      if (user) {
+        throw new Error('User already exists');
+      }
+      const newUser = await new User ({
+        username,
+        email,
+        password
+      }).save();   
+      return { token: createToken(newUser, process.env.SECRET, "1hr" ) };
     }
+// all mutation ends here
   }
 };

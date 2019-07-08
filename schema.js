@@ -26,8 +26,17 @@ type Query{
   getAllBlogs: [Blog]
 }
 
+type Token {
+  token: String!
+}
+
 type Mutation {
   addBlog(title: String! , description: String! , category: String!, body: String!, username: String): Blog
+
+  signinUser(username: String!, password: String!): Token
+
+  signupUser(username: String!, email: String!, password: String!): Token
+
 }
 
 `;
