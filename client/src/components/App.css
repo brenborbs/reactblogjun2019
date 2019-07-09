@@ -1,3 +1,7 @@
+.signin_box {
+  margin-top: 6em;
+}
+
 .signin_wrapper {
   margin: 0 auto;
   width: 50%;
@@ -8,4 +12,18 @@ label {
 
 .error_wrapper {
   margin-top: 1rem;
+}
+nav {
+  overflow: hidden;
+  background-color: aquamarine;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
+.nav-link {
+  color: gray;
+  font-size: 20px;
+}
+.nav-link:hover {
+  color: orange;
 }

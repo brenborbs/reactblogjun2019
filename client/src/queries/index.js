@@ -13,6 +13,22 @@ export const GET_ALL_BLOGS = gql`
   }
 `;
 
+// User Queries
+
+export const GET_CURRENT_USER = gql`
+  query {
+    getCurrentUser {
+      username
+      joinDate
+      email
+      favorites {
+        _id
+        username
+      }
+    }
+  }
+`;
+
 export const SIGNIN_USER = gql`
   mutation($username: String!, $password: String!) {
     signinUser(username: $username, password: $password) {

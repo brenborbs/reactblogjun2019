@@ -1,21 +1,29 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 const createToken = (user, secret, expiresIn) => {
   const { username, email } = user;
-  return jwt.sign({ username, email }, secret, { expiresIn })
-}
-
-const createToken = (user, secret, expiresIn) => {
-  const { username, email } = user;
-  return jwt.sign({ username, email }, secret, { expiresIn })
-}
+  return jwt.sign({ username, email }, secret, { expiresIn });
+};
 
 exports.resolvers = {
   Query: {
     getAllBlogs: async (root, args, { Blog }) => {
       const AllBlogs = await Blog.find();
       return AllBlogs;
+    },
+
+    getCurrentUser: async (root, args, { currentUser, User }) => {
+      if (!currentUser) {
+        return null;
+      }
+      const user = await User.findOne({
+        username: currentUser.username
+      }).populate({
+        path: "favorites",
+        model: "Blog"
+      });
+      return user;
     }
   },
 
@@ -47,18 +55,18 @@ exports.resolvers = {
       return { token: createToken(user, process.env.SECRET, "1hr") };
     },
 
-    signupUser : async (root, { username, email, password }, { User }) => {
+    signupUser: async (root, { username, email, password }, { User }) => {
       const user = await User.findOne({ username });
       if (user) {
-        throw new Error('User already exists');
+        throw new Error("User already exists");
       }
-      const newUser = await new User ({
+      const newUser = await new User({
         username,
         email,
         password
-      }).save();   
-      return { token: createToken(newUser, process.env.SECRET, "1hr" ) };
+      }).save();
+      return { token: createToken(newUser, process.env.SECRET, "1hr") };
     }
-// all mutation ends here
+    // all mutation ends here
   }
 };

@@ -10,8 +10,13 @@ import "./index.css";
 
 // Components
 import App from "./components/App";
+import Navbar from "./components/Navbar";
 import Signin from "./components/Auth/Signin";
 import Signup from "./components/Auth/Signup";
+import withSession from "./components/WithSession";
+import Search from "./components/Blog/Search";
+import AddBlog from "./components/Blog/addBlog";
+import Profile from "./components/Profile/Profile";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
@@ -36,22 +41,28 @@ const client = new ApolloClient({
   }
 });
 
-const Root = () => (
+const Root = ({ refetch, session }) => (
   <Router>
     <Fragment>
+      <Navbar session={session} />
       <Switch>
         <Route path="/" exact component={App} />
-        <Route path="/signin" component={Signin} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/search" exact component={Search} />
+        <Route path="/signin" render={() => <Signin refetch={refetch} />} />
+        <Route path="/signup" render={() => <Signup refetch={refetch} />} />
+        <Route path="/blog/add" render={() => <AddBlog session={session} />} />
+        <Route path="/profile" render={() => <Profile session={session} />} />
         <Redirect to="/" />
       </Switch>
     </Fragment>
   </Router>
 );
 
+const RootWithSession = withSession(Root);
+
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Root />
+    <RootWithSession />
   </ApolloProvider>,
 
   document.getElementById("root")

@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: "variables.env" });
 
 // Models
@@ -60,13 +61,14 @@ app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
 app.use(
   "/graphql",
   bodyParser.json(),
-  graphqlExpress({
+  graphqlExpress(({ currentUser }) => ({
     schema,
     context: {
       Blog,
-      User
+      User,
+      currentUser
     }
-  })
+  }))
 );
 
 const PORT = process.env.PORT || 4444;

@@ -24,6 +24,8 @@ type User {
 
 type Query{
   getAllBlogs: [Blog]
+
+  getCurrentUser: User
 }
 
 type Token {

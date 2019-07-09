@@ -23,3 +23,9 @@ To run the app:
 - Create react app client
 - Signin and Signout functionalities
 - Added token localstorage for signin/get currentuser
+
+3rd commit:
+
+- Signin and Signout front-end functionalities
+- Added navbar and auth/unauth routes
+- Added withSession component and functionalities
