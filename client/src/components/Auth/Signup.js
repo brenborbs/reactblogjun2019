@@ -103,7 +103,7 @@ class Signup extends Component {
                     <button
                       type="submit"
                       disabled={loading || this.validateForm()}
-                      className="btn btn-outline-info"
+                      className="btn btn-outline-dark"
                     >
                       Submit
                     </button>

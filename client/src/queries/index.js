@@ -3,12 +3,61 @@ import { gql } from "apollo-boost";
 export const GET_ALL_BLOGS = gql`
   query {
     getAllBlogs {
+      _id
       title
       description
-      body
       category
-      likes
+    }
+  }
+`;
+
+export const GET_BLOG = gql`
+  query($_id: ID!) {
+    getBlog(_id: $_id) {
+      _id
+      title
+      category
+      description
+      body
       createdDate
+      likes
+      username
+    }
+  }
+`;
+
+export const SEARCH_BLOGS = gql`
+  query($searchTerm: String) {
+    searchBlogs(searchTerm: $searchTerm) {
+      _id
+      title
+      likes
+    }
+  }
+`;
+
+export const ADD_BLOG = gql`
+  mutation(
+    $title: String!
+    $description: String!
+    $category: String!
+    $body: String!
+    $username: String
+  ) {
+    addBlog(
+      title: $title
+      description: $description
+      category: $category
+      body: $body
+      username: $username
+    ) {
+      _id
+      title
+      category
+      description
+      body
+      createdDate
+      likes
     }
   }
 `;

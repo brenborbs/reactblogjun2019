@@ -17,6 +17,7 @@ import withSession from "./components/WithSession";
 import Search from "./components/Blog/Search";
 import AddBlog from "./components/Blog/addBlog";
 import Profile from "./components/Profile/Profile";
+import BlogPage from "./components/Blog/BlogPage";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
@@ -51,6 +52,7 @@ const Root = ({ refetch, session }) => (
         <Route path="/signin" render={() => <Signin refetch={refetch} />} />
         <Route path="/signup" render={() => <Signup refetch={refetch} />} />
         <Route path="/blog/add" render={() => <AddBlog session={session} />} />
+        <Route path="/blog/:_id" component={BlogPage} />
         <Route path="/profile" render={() => <Profile session={session} />} />
         <Redirect to="/" />
       </Switch>

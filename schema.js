@@ -24,7 +24,8 @@ type User {
 
 type Query{
   getAllBlogs: [Blog]
-
+  getBlog(_id: ID!): Blog
+  searchBlogs(searchTerm: String): [Blog]
   getCurrentUser: User
 }
 

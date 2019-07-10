@@ -9,10 +9,35 @@ const createToken = (user, secret, expiresIn) => {
 exports.resolvers = {
   Query: {
     getAllBlogs: async (root, args, { Blog }) => {
-      const AllBlogs = await Blog.find();
+      const AllBlogs = await Blog.find().sort({ createdDate: "desc" });
       return AllBlogs;
     },
-
+    getBlog: async (root, { _id }, { Blog }) => {
+      const blog = await Blog.findOne({ _id });
+      return blog;
+    },
+    searchBlogs: async (root, { searhTerm }, { Blog }) => {
+      if (searhTerm) {
+        // search
+        const searchResults = await Blog.find(
+          {
+            $text: { $search: searchTerm }
+          },
+          {
+            score: { $meta: "textScore" }
+          }
+        ).sort({
+          score: { $meta: "textScore" }
+        });
+        return searchResults;
+      } else {
+        const blogs = await Blog.find().sort({
+          likes: "desc",
+          createdDate: "desc"
+        });
+        return blogs;
+      }
+    },
     getCurrentUser: async (root, args, { currentUser, User }) => {
       if (!currentUser) {
         return null;

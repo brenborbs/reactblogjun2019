@@ -1,10 +1,23 @@
 .signin_box {
-  margin-top: 6em;
+  padding: 60px;
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(../resources/images/blur.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* padding: 20px 0 80px 0; */
 }
-
+.main_container {
+  margin: 5rem;
+}
 .signin_wrapper {
   margin: 0 auto;
   width: 50%;
+  background-color: lightgrey;
+  border-radius: 10px;
+  padding: 40px;
 }
 label {
   margin-top: 0.5rem;
@@ -15,15 +28,17 @@ label {
 }
 nav {
   overflow: hidden;
-  background-color: aquamarine;
+  background-color: black;
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
+  z-index: 1;
 }
 .nav-link {
-  color: gray;
+  color: white;
   font-size: 20px;
+  font-weight: bold;
 }
 .nav-link:hover {
-  color: orange;
+  color: lightgray;
 }

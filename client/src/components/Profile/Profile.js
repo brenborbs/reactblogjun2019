@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 const Profile = () => {
   return (
-    <div className="signin_box" >
+    <div className="">
       <p>Profile</p>
     </div>
   );

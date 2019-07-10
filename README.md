@@ -29,3 +29,9 @@ To run the app:
 - Signin and Signout front-end functionalities
 - Added navbar and auth/unauth routes
 - Added withSession component and functionalities
+
+4th commit:
+
+- Search blog functionality
+- Add new blog functionality
+- improvement of signin/signout pages
