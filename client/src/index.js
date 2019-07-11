@@ -18,6 +18,9 @@ import Search from "./components/Blog/Search";
 import AddBlog from "./components/Blog/addBlog";
 import Profile from "./components/Profile/Profile";
 import BlogPage from "./components/Blog/BlogPage";
+import Footer from "./components/Footer";
+
+import ScrollToTop from "./components/ScrollTopTop";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
@@ -47,15 +50,21 @@ const Root = ({ refetch, session }) => (
     <Fragment>
       <Navbar session={session} />
       <Switch>
-        <Route path="/" exact component={App} />
-        <Route path="/search" exact component={Search} />
-        <Route path="/signin" render={() => <Signin refetch={refetch} />} />
-        <Route path="/signup" render={() => <Signup refetch={refetch} />} />
-        <Route path="/blog/add" render={() => <AddBlog session={session} />} />
-        <Route path="/blog/:_id" component={BlogPage} />
-        <Route path="/profile" render={() => <Profile session={session} />} />
-        <Redirect to="/" />
+        <ScrollToTop>
+          <Route path="/" exact component={App} />
+          <Route path="/search" exact component={Search} />
+          <Route path="/signin" render={() => <Signin refetch={refetch} />} />
+          <Route path="/signup" render={() => <Signup refetch={refetch} />} />
+          <Route
+            path="/blog/add"
+            render={() => <AddBlog session={session} />}
+          />
+          <Route path="/blog/:_id" component={BlogPage} />
+          <Route path="/profile" render={() => <Profile session={session} />} />
+          <Redirect to="/" />
+        </ScrollToTop>
       </Switch>
+      <Footer />
     </Fragment>
   </Router>
 );

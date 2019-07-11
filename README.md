@@ -42,7 +42,14 @@ To run the app:
 - Imrpove layout on some pages
 - Dashboard at profile page
 
+6th commit:
+
+- Added ScrollTopTop
+- Added simple footer
+- Added react-share social media icons
+
 To Do's after 5th commit:
 
 - fix edit blog modal
 - fix search blog results
+- work on adding disqus to react graphql app

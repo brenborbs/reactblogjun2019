@@ -9,24 +9,24 @@ const formatDate = date => {
 
 const UserInfo = ({ session }) => {
   return (
-    <div className="card">
+    <div className="card text-white">
       <h6 className="card-header">User Information</h6>
       <div className="card-body">
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">
+          <li className="list-group-item text-dark">
             Username: {session.getCurrentUser.username}
           </li>
-          <li className="list-group-item">
+          <li className="list-group-item text-dark">
             Email: {session.getCurrentUser.email}
           </li>
-          <li className="list-group-item">
+          <li className="list-group-item text-dark">
             Join Date: {formatDate(session.getCurrentUser.joinDate)}
           </li>
           <div style={{ padding: "20px" }}>
             <h6>Your most favorite blogs</h6>
             {session.getCurrentUser.favorites.map(favorite => (
               <li key={favorite._id}>
-                <Link to={`/blog/${favorite._id}`}>
+                <Link to={`/blog/${favorite._id}`} style={{ color: "#BCA136" }}>
                   <p>{favorite.title}</p>
                 </Link>
               </li>

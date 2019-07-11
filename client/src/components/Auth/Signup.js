@@ -48,7 +48,7 @@ class Signup extends Component {
         <div className="container" style={{ margin: "40px" }}>
           <div className="signin_wrapper">
             <h2>Create a new account</h2>
-            <p id="emailHelp" className="form-text text-muted">
+            <p id="emailHelp" className="form-text">
               It is always free.
             </p>
             <Mutation
@@ -60,8 +60,8 @@ class Signup extends Component {
                   <form
                     onSubmit={event => this.handleSubmit(event, signupUser)}
                   >
-                    <div className="form-group">
-                      <label htmlFor="InputUsername">Username</label>
+                    <div className="form-group text-white">
+                      <label htmlFor="InputUsername ">Username</label>
                       <input
                         type="text"
                         name="username"
@@ -70,7 +70,7 @@ class Signup extends Component {
                         value={username}
                         onChange={this.handleChange}
                       />
-                      <label htmlFor="InputEmail">Email</label>
+                      <label htmlFor="InputEmail ">Email</label>
                       <input
                         type="email"
                         name="email"
@@ -79,7 +79,7 @@ class Signup extends Component {
                         value={email}
                         onChange={this.handleChange}
                       />
-                      <label htmlFor="InputPassword">Password</label>
+                      <label htmlFor="InputPassword ">Password</label>
                       <input
                         type="password"
                         name="password"
@@ -88,7 +88,7 @@ class Signup extends Component {
                         value={password}
                         onChange={this.handleChange}
                       />
-                      <label htmlFor="InputPasswordConfirmation">
+                      <label htmlFor="InputPasswordConfirmation ">
                         Password Confirmation
                       </label>
                       <input

@@ -5,7 +5,7 @@ const BlogItem = ({ _id, imageUrl, category, title }) => {
   return (
     <div className="col-md-4">
       <div className="card-deck mb-4">
-        <div className="card bg-dark" style={{ width: "20rem" }}>
+        <div className="card" style={{ width: "20rem" }}>
           <div className="card-body">
             <img
               className="card-img-top"

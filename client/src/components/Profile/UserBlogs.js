@@ -72,7 +72,7 @@ class UserBlogs extends Component {
             );
           // console.log(data);
           return (
-            <div className="card">
+            <div className="card text-white">
               {modal && (
                 <EditBlogModal
                   handleSubmit={this.handleSubmit}
@@ -180,8 +180,8 @@ const EditBlogModal = ({ handleSubmit, blog, handleChange, closeModal }) => (
           <div className="modal-content">
             <div className="modal-body">
               <form onSubmit={event => handleSubmit(event, updateUserBlog)}>
-                <h4 className="modal-title">Edit Blog</h4>
-                <div className="form-group">
+                <h4 className="modal-title text-dark">Edit Blog</h4>
+                <div className="form-group text-dark">
                   <label htmlFor="title">Title</label>
                   <input
                     type="text"
@@ -190,7 +190,7 @@ const EditBlogModal = ({ handleSubmit, blog, handleChange, closeModal }) => (
                     value={blog.title}
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group text-dark">
                   <label htmlFor="imageUrl">Blog Image</label>
                   <input
                     type="text"
@@ -199,7 +199,7 @@ const EditBlogModal = ({ handleSubmit, blog, handleChange, closeModal }) => (
                     value={blog.imageUrl}
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group text-dark">
                   <label htmlFor="category">Category of blog</label>
                   <select
                     name="category"
@@ -212,7 +212,7 @@ const EditBlogModal = ({ handleSubmit, blog, handleChange, closeModal }) => (
                     <option value="Travel">Travel</option>
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="form-group text-dark">
                   <label htmlFor="description">Blog Description</label>
                   <input
                     type="text"

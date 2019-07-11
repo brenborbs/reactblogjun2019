@@ -5,7 +5,7 @@ const SearchItem = ({ _id, title, likes, imageUrl }) => {
   return (
     <div className="col-md-6 mt-3">
       <div className="card-deck mb-4">
-        <div className="card bg-dark" style={{ width: "25rem" }}>
+        <div className="card" style={{ width: "25rem" }}>
           <div className="card-body">
             <img
               className="card-img-top"

@@ -52,8 +52,8 @@ class Signin extends Component {
                   <form
                     onSubmit={event => this.handleSubmit(event, signinUser)}
                   >
-                    <div className="form-group">
-                      <label htmlFor="InputUsername">Username</label>
+                    <div className="form-group text-white">
+                      <label htmlFor="InputUsername ">Username</label>
                       <input
                         type="text"
                         name="username"
@@ -63,7 +63,7 @@ class Signin extends Component {
                         onChange={this.handleChange}
                       />
 
-                      <label htmlFor="InputPassword">Password</label>
+                      <label htmlFor="InputPassword ">Password</label>
                       <input
                         type="password"
                         name="password"

@@ -91,7 +91,7 @@ class AddBlog extends Component {
               <div
                 className="col-md-10"
                 style={{
-                  backgroundColor: "lightgray",
+                  backgroundColor: "beige",
                   padding: "20px",
                   borderRadius: "5px"
                 }}
