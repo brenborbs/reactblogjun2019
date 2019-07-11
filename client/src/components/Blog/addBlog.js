@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import CKEditor from "react-ckeditor-component";
 import { Mutation } from "react-apollo";
-import { ADD_BLOG, GET_ALL_BLOGS } from "../../queries";
+import { ADD_BLOG, GET_ALL_BLOGS, GET_USER_BLOGS } from "../../queries";
 import Error from "../Error";
 import withAuth from "../withAuth";
 
@@ -34,6 +35,11 @@ class AddBlog extends Component {
     });
   };
 
+  handleEditorChange = event => {
+    const newContent = event.editor.getData();
+    this.setState({ body: newContent });
+  };
+
   handleSubmit = (event, addBlog) => {
     event.preventDefault();
     addBlog().then(({ data }) => {
@@ -44,8 +50,8 @@ class AddBlog extends Component {
   };
 
   validateForm = () => {
-    const { title, category, description, body } = this.state;
-    const isInvalid = !title || !category || !description || !body;
+    const { title, imageUrl, category, description, body } = this.state;
+    const isInvalid = !title || !imageUrl || !category || !description || !body;
     return isInvalid;
   };
 
@@ -74,6 +80,9 @@ class AddBlog extends Component {
       <Mutation
         mutation={ADD_BLOG}
         variables={{ title, imageUrl, category, description, body, username }}
+        refetchQueries={() => [
+          { query: GET_USER_BLOGS, variables: { username } }
+        ]}
         update={this.updateCache}
       >
         {(addBlog, { data, loading, error }) => {
@@ -111,17 +120,17 @@ class AddBlog extends Component {
                       value={description}
                     />
                   </div>
-                  {/* <div className="form-group">
+                  <div className="form-group">
                     <label htmlFor="image">Upload Image</label>
                     <input
                       type="text"
-                      name="title"
+                      name="imageUrl"
                       className="form-control"
                       placeholder="Blog image"
                       onChange={this.handleChange}
                       value={imageUrl}
                     />
-                  </div> */}
+                  </div>
                   <div className="form-group">
                     <label htmlFor="Select">Select Category</label>
                     <select
@@ -138,7 +147,12 @@ class AddBlog extends Component {
                   </div>
                   <div className="form-group">
                     <label htmlFor="body">Body</label>
-                    <textarea
+                    <CKEditor
+                      name="body"
+                      content={body}
+                      events={{ change: this.handleEditorChange }}
+                    />
+                    {/* <textarea
                       type="text"
                       name="body"
                       rows="12"
@@ -146,7 +160,7 @@ class AddBlog extends Component {
                       placeholder="Body"
                       onChange={this.handleChange}
                       value={body}
-                    />
+                    /> */}
                   </div>
 
                   <button
@@ -156,9 +170,7 @@ class AddBlog extends Component {
                   >
                     Submit
                   </button>
-                  {error && (
-                    <Error error={error} style={{ marginTop: "5px" }} />
-                  )}
+                  {error && <Error error={error} style={{ margin: "5px" }} />}
                   {/* form inputs end here */}
                 </form>
               </div>

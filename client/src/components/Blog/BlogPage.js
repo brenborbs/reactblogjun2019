@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 
 import { Query } from "react-apollo";
 import { GET_BLOG } from "../../queries";
+import LikeBlog from "./LikeBlog";
+import Spinner from "../Spinner";
 
 const BlogPage = ({ match }) => {
   const { _id } = match.params;
@@ -10,8 +12,13 @@ const BlogPage = ({ match }) => {
   return (
     <Query query={GET_BLOG} variables={{ _id }}>
       {({ data, loading, error }) => {
-        if (loading) return <div>Loading</div>;
-        if (error) return <div>Error</div>;
+        if (loading) return <Spinner />;
+        if (error)
+          return (
+            <div className="alert alert-danger" role="alert">
+              Error something wrong with the page!
+            </div>
+          );
         console.log(data);
         return (
           <div
@@ -28,14 +35,23 @@ const BlogPage = ({ match }) => {
                   {""} Posted on {data.getBlog.createdDate}
                 </p>
                 <hr />
-                <img className="img-fluid rounded" src="" alt="title" />
+                <img
+                  className="img-fluid rounded"
+                  src={data.getBlog.imageUrl}
+                  alt={data.getBlog.title}
+                />
+                <p>
+                  <small>{data.getBlog.description}</small>
+                </p>
                 <hr />
-                <p className="lead">{data.getBlog.description}</p>
-                <p>{data.getBlog.body}</p>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: data.getBlog.body
+                  }}
+                />
                 <hr />
-                <button className="btn btn-outline-dark">Like</button>
-                <hr />
-                <div className="media mb-4">
+                <LikeBlog _id={_id} />
+                <div className="media mb-4 mt-2">
                   <div className="media-body">
                     <h4>Share this story</h4>
                   </div>

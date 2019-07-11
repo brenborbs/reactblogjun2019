@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SearchItem = ({ _id, title, likes }) => {
+const SearchItem = ({ _id, title, likes, imageUrl }) => {
   return (
     <div className="col-md-6 mt-3">
       <div className="card-deck mb-4">
@@ -9,7 +9,7 @@ const SearchItem = ({ _id, title, likes }) => {
           <div className="card-body">
             <img
               className="card-img-top"
-              src=""
+              src={imageUrl}
               alt={title}
               style={{ height: "16rem" }}
             />

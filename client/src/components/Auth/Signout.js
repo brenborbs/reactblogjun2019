@@ -14,7 +14,7 @@ const Signout = ({ history }) => (
     {client => {
       return (
         <button
-          className="btn btn-outline-warning btn-sm"
+          className="btn btn-outline-primary btn-sm"
           style={{ marginTop: "6px" }}
           onClick={() => handleSignout(client, history)}
         >

@@ -38,6 +38,12 @@ exports.resolvers = {
         return blogs;
       }
     },
+    getUserBlogs: async (root, { username }, { Blog }) => {
+      const userBlogs = await Blog.find({ username }).sort({
+        createdDate: "desc"
+      });
+      return userBlogs;
+    },
     getCurrentUser: async (root, args, { currentUser, User }) => {
       if (!currentUser) {
         return null;
@@ -55,11 +61,12 @@ exports.resolvers = {
   Mutation: {
     addBlog: async (
       root,
-      { title, description, category, body, username },
+      { title, imageUrl, description, category, body, username },
       { Blog }
     ) => {
       const newBlog = await new Blog({
         title,
+        imageUrl,
         description,
         category,
         body,
@@ -67,7 +74,41 @@ exports.resolvers = {
       }).save();
       return newBlog;
     },
-
+    likeBlog: async (root, { _id, username }, { Blog, User }) => {
+      const blog = await Blog.findOneAndUpdate({ _id }, { $inc: { likes: 1 } });
+      const user = await User.findOneAndUpdate(
+        { username },
+        { $addToSet: { favorites: _id } }
+      );
+      return blog;
+    },
+    unlikeBlog: async (root, { _id, username }, { Blog, User }) => {
+      const blog = await Blog.findOneAndUpdate(
+        { _id },
+        { $inc: { likes: -1 } }
+      );
+      const user = await User.findOneAndUpdate(
+        { username },
+        { $pull: { favorites: _id } }
+      );
+      return blog;
+    },
+    deleteUserBlog: async (root, { _id }, { Blog }) => {
+      const blog = await Blog.findOneAndRemove({ _id });
+      return blog;
+    },
+    updateUserBlog: async (
+      root,
+      { _id, title, imageUrl, category, description },
+      { Blog }
+    ) => {
+      const updatedBlog = await Blog.findOneAndUpdate(
+        { _id },
+        { $set: { title, imageUrl, category, description } },
+        { new: true }
+      );
+      return updatedBlog;
+    },
     signinUser: async (root, { username, password }, { User }) => {
       const user = await User.findOne({ username });
       if (!user) {

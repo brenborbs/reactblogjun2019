@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import Error from "../Error";
 import { SIGNIN_USER } from "../../queries";
@@ -82,6 +82,14 @@ class Signin extends Component {
                     </button>
                     <div className="error_wrapper">
                       {error && <Error error={error} />}
+                    </div>
+                    <div className="register_link">
+                      <p>
+                        Do you have an account? If not, you can register{" "}
+                        <Link to="/signup" style={{ color: "purple" }}>
+                          here
+                        </Link>
+                      </p>
                     </div>
                   </form>
                 );

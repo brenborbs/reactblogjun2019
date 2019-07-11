@@ -35,3 +35,14 @@ To run the app:
 - Search blog functionality
 - Add new blog functionality
 - improvement of signin/signout pages
+
+5th commit:
+
+- Create New Blog functionality
+- Imrpove layout on some pages
+- Dashboard at profile page
+
+To Do's after 5th commit:
+
+- fix edit blog modal
+- fix search blog results
