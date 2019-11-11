@@ -3,10 +3,26 @@
 This is a fullstack Recipe App using React, NodeJS, ExpressJS, Apollo and Graphql
 Back-end started!
 
+add variables.env file
+
+```js
+MONGO_URI=
+SECRET=
+```
+
 To run the app:
 
-- npm run server , to run node.js backend
-- npm run dev, to run both server and client
+run node.js backend
+
+```js
+npm run server
+```
+
+to run both server and client
+
+```js
+npm run dev
+```
 
 1st commit: Project Set-up
 
