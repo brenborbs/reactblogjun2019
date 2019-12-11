@@ -24,6 +24,14 @@ to run both server and client
 npm run dev
 ```
 
+## App Screenshots
+
+<img src="app.png" alt="BlogGraphql">
+<img src="app2.png" alt="BlogGraphql">
+<img src="app3.png" alt="BlogGraphql">
+<img src="app4.png" alt="BlogGraphql">
+<img src="app5.png" alt="BlogGraphql">
+
 1st commit: Project Set-up
 
 - Initialise express server
